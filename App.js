@@ -7,10 +7,8 @@
 import React, { Component } from 'react';
 import {Platform} from 'react-native';
 import Login from './components/Login';
-import Employees from './components/Employees';
-import MainEmployees from './components/MainEmployees';
-import Main from './src/components/main/Main';
-import RootStack from './demo';
+import DrawerMenu from './src/DrawerMenu';
+import TabNavigator from './src/TabNavigator';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -22,7 +20,7 @@ const instructions = Platform.select({
 export default class App extends Component {
   render() {
     return (
-      <Main/>
+      <DrawerMenu/>
     );
   }
 }

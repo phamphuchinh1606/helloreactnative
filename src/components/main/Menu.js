@@ -20,7 +20,7 @@ export default class Menu extends Component {
                     <Text style={userInforText}>Pham Phu Chinh</Text>
                 </View>
                 <View style={cotentMenu}>
-                    <TouchableOpacity style={menuItem}>
+                    <TouchableOpacity style={menuItem} onPress={()=>this.props.navigation.navigate('Employees')}>
                         <Image source={employeeIcon}/>
                         <Text style={textItem}>Nhân viên</Text>
                     </TouchableOpacity>

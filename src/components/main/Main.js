@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Navigator } from 'react-native';
 import Drawer from 'react-native-drawer';
-import Menu from './Menu';
-import Body from './Body';
+import MainStyle from '../../../public/css/main/MainStyle';
+import Header from './Header';
+import Home from '../home/Home';
+import Employees from '../employee/Employees';
+
+//Image
+import backIcon from '../../../images/back-icon.png';
+import menuIcon from '../../../images/menu-icon.png';
 
 export default class Main extends Component {
-    closeControlPanel = () => {
-        this._drawer.close()
-    };
-    openControlPanel = () => {
-        this._drawer.open()
-    };
+    static navigationOptions = {
+        drawerLabel: 'Home'
+    }
     render() {
+        var { body, header, back, textHeader, containt } = MainStyle;
         return (
-            <Drawer
-                ref={(ref) => this._drawer = ref}
-                tapToClose={true}
-                openDrawerOffset={0.3} // 30% gap on the right side of drawer
-                content={<Menu />}
-            >
-                <Body openControlPanel={this.openControlPanel.bind(this)}/>
-            </Drawer>
+            <View style={body}>
+                <Header />
+                <View style={containt}>
+                    <Text>Trang chủ</Text>
+                </View>
+            </View>
         )
     }
 }

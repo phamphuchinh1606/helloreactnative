@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Container, Header, Content, Button, Text } from 'native-base';
+import HeaderTitle from '../main/Header';
 
 export default class Home extends Component {
+    // static navigationOptions =  {
+    //     headerTitle: <HeaderTitle />
+    //   };
+    // static navigationOptions = ({ navigation }) => {
+    //     const params = navigation.state.params || {};
+
+    //     return {
+    //         headerTitle: <HeaderTitle navigation={navigation}/>
+    //     };
+    // }
     render() {
-        const { navigate } = this.props.navigation;
         return (
-            <View>
-                <Text>Trang chủ</Text>
-                <TouchableOpacity onPress={()=>navigate('ScreenEmployees')}>
-                    <Text>vao nhan vien</Text>
-                </TouchableOpacity>
-            </View>
-        )
+            <Container>
+                <Header />
+                <Content>
+                    <Button light onPress={() => this.props.navigation.navigate('StackEmployees')}>
+                        <Text> Nhan vien </Text>
+                    </Button>
+                </Content>
+            </Container>
+        );
     }
 }
