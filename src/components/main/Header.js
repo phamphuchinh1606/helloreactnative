@@ -9,14 +9,12 @@ export default class Header extends Component{
     render(){
         var {header,back,textHeader} = HeaderStyle;
         var {navigation} = this.props;
-        var title = this.props.state;
-        console.log('phu chinh');
-        console.log(this.props.header);
+        // console.log(navigation);
         return(
             <View style={header}>
                 <TouchableOpacity style={back} onPress={()=>navigation.goBack()}>
                     <Image source={backIconImage} />
-                    <Text style={textHeader}>{title}</Text>
+                    <Text style={textHeader}>Back</Text>
                 </TouchableOpacity>
                 <Text style={textHeader}>Danh sách nhân viên</Text>
                 <TouchableOpacity onPress={()=>navigation.navigate('DrawerOpen')}>
