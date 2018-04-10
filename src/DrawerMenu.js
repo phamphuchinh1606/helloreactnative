@@ -1,19 +1,27 @@
 import React from 'react';
 import { View, Text, Image, Button, StyleSheet, Dimensions } from 'react-native';
 import { DrawerNavigator, StackNavigator } from 'react-navigation';
-import RootStackMenu from './navigators/RootStackMenu';
-import Menu from './components/main/Menu';
+import Main from './components/main/Main';
+import Employees from './components/employee/Employees';
+import Employee from './components/employee/Employee';
+import Menu from './menu/Menu';
 
 const { height, width } = Dimensions.get('window');
 
 const DrawerMenu = DrawerNavigator(
     {
         Main: {
-            screen: RootStackMenu
+            screen: Main
+        },
+        Employees:{
+            screen: Employees
+        },
+        Employee:{
+            screen: Employee
         }
     },
     {
-        initialRouteName: 'Main',
+        initialRouteName: 'Employee',
         drawerWidth: width * 2 / 3,
         drawerPosition: 'left',
         contentComponent: props => <Menu {...props} />,

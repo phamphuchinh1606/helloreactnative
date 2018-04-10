@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 import {Platform} from 'react-native';
 import Login from './components/Login';
-import DrawerMenu from './src/menu/DrawerMenu';
+import DrawerMenu from './src/DrawerMenu';
 import TabNavigator from './src/TabNavigator';
 import LoginBase from './src/components/auth/Login';
 import Main from './src/components/main/Main';

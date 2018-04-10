@@ -19,25 +19,25 @@ const listMenu = [
         id: 1,
         name: 'Nhân viên',
         imageIcon: employeeIcon,
-        action: Actions.Employees
+        screenName: 'Employees'
     },
     {
         id: 2,
         name: 'Bán hàng',
         imageIcon: orderIcon,
-        action: Actions.Employees
+        screenName: 'Employees'
     },
     {
         id: 3,
         name: 'Phiếu thu',
         imageIcon: receiptIcon,
-        action: Actions.Employees
+        screenName: 'Employees'
     },
     {
         id: 4,
         name: 'Phiếu chi',
         imageIcon: paymentSlipIcon,
-        action: Actions.Employees
+        screenName: 'Employees'
     }
 ];
 
@@ -51,15 +51,14 @@ export default class Menu extends Component {
     }
 
     renderRowListMenuItem(rowData) {
-        var { navigator } = this.props;
-        console.log(navigator);
+        var { navigation } = this.props;
         return (
             <ListItem icon style={{ marginTop: 5, marginBottom: 5 }}>
                 <Left>
                     <Image source={rowData.imageIcon} />
                 </Left>
                 <Body>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>navigation.navigate(rowData.screenName)}>
                         <Text>{rowData.name}</Text>
                     </TouchableOpacity>
                 </Body>
@@ -83,54 +82,6 @@ export default class Menu extends Component {
                     </List>
                 </Content>
             </Container>
-            // <View style={bodyMenu}>
-            //     <View style={userInfor}>
-            //         <Image source={userIcon} />
-            //         <Text style={userInforText}>Pham Phu Chinh</Text>
-            //     </View>
-            //     <View style={cotentMenu}>
-            //         <ScrollView>
-            //             <TouchableOpacity style={menuItem} onPress={() => this._goToEmployees()}>
-            //                 <Image source={employeeIcon} />
-            //                 <Text style={textItem}>Nhân viên</Text>
-            //             </TouchableOpacity>
-            //             <TouchableOpacity style={menuItem}>
-            //                 <Image source={orderIcon} />
-            //                 <Text style={textItem}>Bán hàng</Text>
-            //             </TouchableOpacity>
-            //             <TouchableOpacity style={menuItem}>
-            //                 <Image source={receiptIcon} />
-            //                 <Text style={textItem}>Phiếu chi</Text>
-            //             </TouchableOpacity>
-            //             <TouchableOpacity style={menuItem}>
-            //                 <Image source={paymentSlipIcon} />
-            //                 <Text style={textItem}>Phiếu thu</Text>
-            //             </TouchableOpacity>
-            //             <TouchableOpacity style={menuItem}>
-            //                 <Image source={employeeIcon} />
-            //                 <Text style={textItem}>Nhân viên</Text>
-            //             </TouchableOpacity>
-            //             <TouchableOpacity style={menuItem}>
-            //                 <Image source={orderIcon} />
-            //                 <Text style={textItem}>Bán hàng</Text>
-            //             </TouchableOpacity>
-            //             <TouchableOpacity style={menuItem}>
-            //                 <Image source={receiptIcon} />
-            //                 <Text style={textItem}>Phiếu chi</Text>
-            //             </TouchableOpacity>
-            //             <TouchableOpacity style={menuItem}>
-            //                 <Image source={paymentSlipIcon} />
-            //                 <Text style={textItem}>Phiếu thu</Text>
-            //             </TouchableOpacity>
-            //         </ScrollView>
-            //     </View>
-            //     <View style={footer}>
-            //         <TouchableOpacity style={footerItem}>
-            //             <Image source={logoutIcon} />
-            //             <Text style={textFooter}>Đăng xuất</Text>
-            //         </TouchableOpacity>
-            //     </View>
-            // </View>
         )
     }
 }

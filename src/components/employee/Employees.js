@@ -1,82 +1,17 @@
 import React, { Component } from 'react';
-import { ListView } from 'react-native';
-import {
-    Container, Header, Content, Item, Input, Icon, Button, Text,
-    List, ListItem, Thumbnail, Left, Body, Right
-} from 'native-base';
-import EmployeesStyle from '../../../public/css/EmployeesStyle';
+import {Container, Text } from 'native-base';
 
-//Image
-import nextIcon from '../../../images/next-icon.png';
-
-const listNhanVien = [
-    {
-        id: 1,
-        name: 'Pham Phu Ch',
-        position: 'Nhân viên',
-        image: require('../../../images/chinh.png')
-    },
-    {
-        id: 2,
-        name: 'pham dang thuy',
-        position: 'Trưởng nhóm',
-        image: require('../../../images/thuy.png')
-    }
-];
+import Header from '../main/MainHeader';
+import _ContentEmployees from './_ContentEmployees';
 
 export default class Employees extends Component {
-    static navigationOptions = {
-        title: 'Welcome',
-    };
-
-    constructor(props) {
-        super(props);
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-        this.state = {
-            listEmployees: ds.cloneWithRows(listNhanVien)
-        }
-    }
-
-    _goToDetail = () =>{
-        const {navigate } = this.props.navigation;
-        navigate('Employee');
-    }
-
-    renderRowListEmployees(rowData) {
-        var {navigation} = this.props;
-        return (
-            <ListItem>
-                <Thumbnail square size={80} source={rowData.image} />
-                <Body>
-                    <Text>{rowData.name}</Text>
-                    <Text note>{rowData.position}</Text>
-                </Body>
-                <Right>
-                    <Button transparent info onPress={() => this._goToDetail()}>
-                        <Text>View</Text>
-                    </Button>
-                </Right>
-            </ListItem>
-        );
-    }
 
     render() {
+        var {navigation} = this.props;
         return (
             <Container>
-                <Header searchBar rounded>
-                    <Item>
-                        <Icon active name='search' />
-                        <Input placeholder='Tìm kiếm theo tên' />
-                    </Item>
-                </Header>
-                <Content>
-                    <List>
-                        <ListView
-                            dataSource={this.state.listEmployees}
-                            renderRow={(rowData) => this.renderRowListEmployees(rowData)}
-                        />
-                    </List>
-                </Content>
+                <Header navigation={navigation} title="Danh sách nhân viên" showMenu={true}/>
+                <_ContentEmployees navigation={navigation}/>
             </Container>
         )
     }

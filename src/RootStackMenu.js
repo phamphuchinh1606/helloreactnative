@@ -2,44 +2,24 @@ import React from 'react';
 import { Image } from 'react-native';
 import { Button, Text } from 'native-base';
 import { StackNavigator } from 'react-navigation';
-import HeaderTitle from './components/main/Header'
 import Home from './components/home/Home';
 import Employees from './components/employee/Employees';
+import Main from './components/main/Main';
 
 const RootStackMenu = StackNavigator(
     {
+        Main: {
+            screen: Main
+        },
         Home: {
-            screen: Home,
-            navigationOptions: {
-                title: 'Trang chủ'
-            }
+            screen: Home
         },
         Employees: {
-            screen: Employees,
-            navigationOptions: {
-                title: 'Danh sách nhân viên'
-            }
+            screen: Employees
         }
     },
     {
-        initialRouteName: 'Home',
-        navigationOptions: ({navigation}) => ({
-            headerStyle: {
-                backgroundColor: '#34B089'
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                fontWeight: 'bold',
-                alignItems:'center',
-                justifyContent: 'center'
-            },
-            headerRight: (
-                <Button style={{ backgroundColor: '#34B089', flex: 1  }}
-                    onPress={() => navigation.navigate('DrawerOpen')}>
-                    <Image source={require('../images/menu-icon.png')} style={{ width: 30, height: 30 , marginRight: 10}}/>
-                </Button>
-            )
-        })
+        initialRouteName: 'Main'
     }
 );
 
