@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Button, Text } from 'native-base';
-import HeaderTitle from '../main/Header';
 
 export default class HomeMonth extends Component {
     // static navigationOptions = {

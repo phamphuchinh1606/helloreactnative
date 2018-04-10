@@ -7,9 +7,10 @@
 import React, { Component } from 'react';
 import {Platform} from 'react-native';
 import Login from './components/Login';
-import DrawerMenu from './src/DrawerMenu';
+import DrawerMenu from './src/menu/DrawerMenu';
 import TabNavigator from './src/TabNavigator';
 import LoginBase from './src/components/auth/Login';
+import Main from './src/components/main/Main';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -21,7 +22,7 @@ const instructions = Platform.select({
 export default class App extends Component {
   render() {
     return (
-      <LoginBase/>
+      <DrawerMenu/>
     );
   }
 }

@@ -37,7 +37,13 @@ export default class Employees extends Component {
         }
     }
 
+    _goToDetail = () =>{
+        const {navigate } = this.props.navigation;
+        navigate('Employee');
+    }
+
     renderRowListEmployees(rowData) {
+        var {navigation} = this.props;
         return (
             <ListItem>
                 <Thumbnail square size={80} source={rowData.image} />
@@ -46,50 +52,22 @@ export default class Employees extends Component {
                     <Text note>{rowData.position}</Text>
                 </Body>
                 <Right>
-                    <Button transparent info>
+                    <Button transparent info onPress={() => this._goToDetail()}>
                         <Text>View</Text>
                     </Button>
                 </Right>
             </ListItem>
-
-            // <View style={EmployeesStyle.rowData}>
-            //     <Image source={rowData.image} style={EmployeesStyle.imageContent} />
-            //     <View style={EmployeesStyle.inforContent}>
-            //         <View>
-            //             <Text style={EmployeesStyle.inforNameContent}>{rowData.name}</Text>
-            //             <Text>{rowData.position}</Text>
-            //         </View>
-            //         <TouchableOpacity>
-            //             <Image source={nextIcon} />
-            //         </TouchableOpacity>
-            //     </View>
-            // </View>
         );
     }
 
     render() {
         return (
-            //    <View style={EmployeesStyle.body}>
-            //         <View style={EmployeesStyle.containt}>
-            //             <View style={EmployeesStyle.employeesHeader}>
-            //                 <TextInput placeholder="Tìm kiếm" style={EmployeesStyle.employeesHeaderText} />
-            //             </View>
-            //             <View style={EmployeesStyle.employeesContent}>
-            //                 <ListView
-            //                     dataSource={this.state.listEmployees}
-            //                     renderRow={(rowData) => this.renderRowListEmployees(rowData)}
-            //                 />
-            //             </View>
-            //         </View>
-            //     </View>
             <Container>
                 <Header searchBar rounded>
                     <Item>
-                        <Input placeholder="Search" />
+                        <Icon active name='search' />
+                        <Input placeholder='Tìm kiếm theo tên' />
                     </Item>
-                    <Button transparent>
-                        <Text>Search</Text>
-                    </Button>
                 </Header>
                 <Content>
                     <List>

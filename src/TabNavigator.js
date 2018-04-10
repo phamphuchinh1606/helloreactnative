@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import Header from './components/main/Header';
+import Header from './components/main/MainHeader';
 import Home from './components/home/Home';
 import HomeWeek from './components/home/HomeWeek';
 import HomeMonth from './components/home/HomeMonth';

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { NavigationActions } from 'react-navigation'
 import MenuStyle from '../../../public/css/MenuStyle';
 
 //Image
@@ -10,7 +11,18 @@ import orderIcon from '../../../images/menu/order-sale.png';
 import paymentSlipIcon from '../../../images/menu/payment-slip.png';
 import receiptIcon from '../../../images/menu/receipt.png';
 
+const backAction = NavigationActions.back({
+    key: 'Employees'   // if you want to go back to B
+})
+
 export default class Menu extends Component {
+    _goToEmployees(){
+        var {navigation} = this.props;
+        var {navigate} = navigation;
+        navigate('Employees');
+        navigation.dispatch(backAction);
+    }
+
     render() {
         var { bodyMenu, userInfor, cotentMenu, userInforText, menuItem, textItem, footer, footerItem, textFooter } = MenuStyle;
         return (
@@ -21,7 +33,7 @@ export default class Menu extends Component {
                 </View>
                 <View style={cotentMenu}>
                     <ScrollView>
-                        <TouchableOpacity style={menuItem} onPress={() => this.props.navigation.navigate('Employees')}>
+                        <TouchableOpacity style={menuItem} onPress={() => this._goToEmployees()}>
                             <Image source={employeeIcon} />
                             <Text style={textItem}>Nhân viên</Text>
                         </TouchableOpacity>

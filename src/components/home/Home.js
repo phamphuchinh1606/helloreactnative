@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Button, Text } from 'native-base';
-import HeaderTitle from '../main/Header';
 
 export default class Home extends Component {
     // static navigationOptions = (navigation) => ({
@@ -30,7 +29,7 @@ export default class Home extends Component {
                 <Header />
                 <Content>
                     <Button light onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-                        <Text> Nhan vien </Text>
+                        <Text> Nhan vien111 </Text>
                     </Button>
                 </Content>
             </Container>
