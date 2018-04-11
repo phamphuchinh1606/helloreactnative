@@ -6,6 +6,7 @@ import Employees from './components/employee/Employees';
 import Employee from './components/employee/Employee';
 import Menu from './menu/Menu';
 import EmployeeSalary from './components/salary/EmployeeSalary';
+import EmployeeSalaryDetail from './components/salary/EmployeeSalaryDetail';
 
 const { height, width } = Dimensions.get('window');
 
@@ -22,6 +23,9 @@ const DrawerMenu = DrawerNavigator(
         },
         EmployeeSalary:{
             screen: EmployeeSalary
+        },
+        EmployeeSalaryDetail:{
+            screen: EmployeeSalaryDetail
         }
     },
     {

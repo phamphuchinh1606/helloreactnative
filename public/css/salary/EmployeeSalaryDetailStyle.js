@@ -3,7 +3,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 const {height,width} = Dimensions.get('window');
 
-var EmployeeSalaryStyle = StyleSheet.create({
+var EmployeeSalaryDetailStyle = StyleSheet.create({
     bodyContent:{
         backgroundColor: '#FFFF',
         margin: 10
@@ -24,7 +24,19 @@ var EmployeeSalaryStyle = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 20,
         paddingLeft: 20
+    },
+    resultItem:{
+        flexDirection: 'row'
+    },
+    itemLeft:{
+        flex: 1
+    },
+    itemBody:{
+        flex :1
+    },
+    itemRight:{
+        flex: 1
     }
 })
 
-export default EmployeeSalaryStyle;
+export default EmployeeSalaryDetailStyle;
