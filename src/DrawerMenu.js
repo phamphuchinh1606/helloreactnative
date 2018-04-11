@@ -5,6 +5,7 @@ import Main from './components/main/Main';
 import Employees from './components/employee/Employees';
 import Employee from './components/employee/Employee';
 import Menu from './menu/Menu';
+import EmployeeSalary from './components/salary/EmployeeSalary';
 
 const { height, width } = Dimensions.get('window');
 
@@ -18,10 +19,13 @@ const DrawerMenu = DrawerNavigator(
         },
         Employee:{
             screen: Employee
+        },
+        EmployeeSalary:{
+            screen: EmployeeSalary
         }
     },
     {
-        initialRouteName: 'Employee',
+        initialRouteName: 'EmployeeSalary',
         drawerWidth: width * 2 / 3,
         drawerPosition: 'left',
         contentComponent: props => <Menu {...props} />,

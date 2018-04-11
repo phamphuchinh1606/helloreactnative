@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation';
 import Home from './components/home/Home';
 import Employees from './components/employee/Employees';
 import Main from './components/main/Main';
+import EmployeeSalary from './components/salary/EmployeeSalary';
 
 const RootStackMenu = StackNavigator(
     {
@@ -16,6 +17,9 @@ const RootStackMenu = StackNavigator(
         },
         Employees: {
             screen: Employees
+        },
+        EmployeeSalary:{
+            screen: EmployeeSalary
         }
     },
     {
