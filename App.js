@@ -11,6 +11,7 @@ import DrawerMenu from './src/DrawerMenu';
 import TabNavigator from './src/TabNavigator';
 import LoginBase from './src/components/auth/Login';
 import Main from './src/components/main/Main';
+import ModelExam from './ModelExam';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
