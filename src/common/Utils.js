@@ -12,4 +12,28 @@ export default class Utils{
         var index = Moment(date).weekday();
         return dayOfWeek[index];
     }
+
+    static renderItemMonthPicker = () =>{
+        var list = [];
+        for(var i = 1 ; i <= 12 ; i++){
+            var item = {
+                label : "Tháng " + i.toString(),
+                value : i.toString()
+            }
+            list.push(item);
+        }
+        return list;
+    }
+
+    static renderItemWeekPicker = () =>{
+        var list = [];
+        for(var i = 2 ; i <= 5 ; i++){
+            var item = {
+                label : "Tuần " + i.toString(),
+                value : i.toString()
+            }
+            list.push(item);
+        }
+        return list;
+    }
 }

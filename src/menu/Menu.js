@@ -23,18 +23,36 @@ const listMenu = [
     },
     {
         id: 2,
-        name: 'Bán hàng',
-        imageIcon: orderIcon,
-        screenName: 'Employees'
+        name: 'Sản phẩm',
+        imageIcon: employeeIcon,
+        screenName: 'ListProduct'
     },
     {
         id: 3,
+        name: 'Chấm công',
+        imageIcon: employeeIcon,
+        screenName: 'ListTimeKeeping'
+    },
+    {
+        id: 4,
+        name: 'Lương nhân viên',
+        imageIcon: employeeIcon,
+        screenName: 'EmployeeSalary'
+    },
+    {
+        id: 5,
+        name: 'Doanh số bán hàng',
+        imageIcon: orderIcon,
+        screenName: 'ListOrder'
+    },
+    {
+        id: 6,
         name: 'Phiếu thu',
         imageIcon: receiptIcon,
         screenName: 'Employees'
     },
     {
-        id: 4,
+        id: 7,
         name: 'Phiếu chi',
         imageIcon: paymentSlipIcon,
         screenName: 'Employees'

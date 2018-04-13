@@ -69,7 +69,7 @@ export default class TimeKeeping extends Component {
         return (
             <ListItem style={resultItem}>
                 <View style={itemLeft}>
-                    <Text style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>{item.name}</Text>
+                    <Text>{item.name}</Text>
                 </View>
                 <View style={itemBody}>
                     <Text>{item.hours}</Text>

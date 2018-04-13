@@ -11,38 +11,34 @@ import viewIcon from '../../../images/view-icon.png';
 import ListTimeKeepingStyle from '../../../public/css/timekeeping/ListTimeKeepingStyle';
 import MainHeader from '../main/MainHeader';
 import FlatListCommonStyle from '../../../public/css/common/FlatListCommonStyle';
+import CommonStyle from '../../../public/css/common/CommonStyle';
 
 const listTimeKeeping = [
     {
         id: 1,
-        name: 'pham dang thuy',
         date: '14/02/2018',
         amount: '350,000đ',
 
     },
     {
         id: 2,
-        name: 'pham dang thuy',
-        amount: '200,000đ',
-        image: require('../../../images/thuy.png')
+        date: '14/02/2018',
+        amount: '200,000đ'
     },
     {
         id: 2,
-        name: 'pham dang thuy',
-        amount: '200,000đ',
-        image: require('../../../images/thuy.png')
+        date: '14/02/2018',
+        amount: '200,000đ'
     },
     {
         id: 2,
-        name: 'pham dang thuy',
-        amount: '200,000đ',
-        image: require('../../../images/thuy.png')
+        date: '14/02/2018',
+        amount: '200,000đ'
     },
     {
         id: 2,
-        name: 'pham dang thuy',
-        amount: '200,000đ',
-        image: require('../../../images/thuy.png')
+        date: '14/02/2018',
+        amount: '200,000đ'
     }
 ];
 
@@ -58,18 +54,18 @@ export default class ListTimeKeeping extends Component {
 
     renderRowListEmployees(item) {
         var { navigation } = this.props;
-        var { resultItem, itemLeft, itemBody, itemRight } = FlatListCommonStyle;
+        var { resultItem, itemLeft, itemBody,itemBodyNumber, itemRight } = FlatListCommonStyle;
         return (
             <ListItem style={resultItem}>
                 <View style={itemLeft}>
-                    <Text>{item.name}</Text>
+                    <Text>{item.date}</Text>
                 </View>
-                <View style={itemBody}>
+                <View style={[itemBody,itemBodyNumber]}>
                     <Text>{item.amount}</Text>
                 </View>
                 <View style={itemRight}>
                     <Button transparent info onPress={() => navigation.navigate("TimeKeeping")}>
-                        <Image source={viewIcon}/>
+                        <Image source={viewIcon} />
                     </Button>
                 </View>
             </ListItem>
@@ -79,6 +75,8 @@ export default class ListTimeKeeping extends Component {
     render() {
         var { bodyContent, searchInfo, searchLable, searchText,
             resultTitle } = ListTimeKeepingStyle;
+        var { resultTotal, totalLeft, totalBody, totalRight } = FlatListCommonStyle;
+        var { fontWeight, fontSize18 } = CommonStyle;
         var { navigation } = this.props;
         return (
             <Container style={{ backgroundColor: '#EEE9E9' }}>
@@ -117,6 +115,18 @@ export default class ListTimeKeeping extends Component {
                             dataSource={this.state.listEmployees}
                             renderRow={(rowData) => this.renderRowListEmployees(rowData)}
                         />
+                        {/* List Total */}
+                        <ListItem style={resultTotal}>
+                            <View style={totalLeft}>
+                                <Text style={fontWeight}>Tổng cộng</Text>
+                            </View>
+                            <View style={totalBody}>
+                                <Text style={fontWeight}>1,5000,000đ</Text>
+                            </View>
+                            <View style={totalRight}>
+                                
+                            </View>
+                        </ListItem>
                     </View>
                 </Content>
                 <Footer>
