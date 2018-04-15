@@ -15,6 +15,10 @@ import InputOrder from './components/order/InputOrder';
 import ListOrder from './components/order/ListOrder';
 import ListPurchaseOrder from './components/purchase/ListPurchaseOrder';
 import PurchaseOrder from './components/purchase/PurchaseOrder';
+import ListPaymentSlip from './components/payment-slip/ListPaymentSlip';
+import PaymentSlip from './components/payment-slip/PaymentSlip';
+import ListInventory from './components/inventory/ListInventory';
+import Inventory from './components/inventory/Inventory';
 
 const { height, width } = Dimensions.get('window');
 
@@ -58,10 +62,22 @@ const DrawerMenu = DrawerNavigator(
         },
         PurchaseOrder: {
             screen:PurchaseOrder
+        },
+        ListPaymentSlip:{
+            screen: ListPaymentSlip
+        },
+        PaymentSlip:{
+            screen: PaymentSlip
+        },
+        ListInventory:{
+            screen: ListInventory
+        },
+        Inventory:{
+            screen: Inventory
         }
     },
     {
-        initialRouteName: 'PurchaseOrder',
+        initialRouteName: 'ListInventory',
         drawerWidth: width * 2 / 3,
         drawerPosition: 'left',
         contentComponent: props => <Menu {...props} />,

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
-var PurchaseOrderStyle = StyleSheet.create({
+var InventoryStyle = StyleSheet.create({
     headerContent:{
         flexDirection: 'row',
         padding:20,
@@ -13,7 +13,7 @@ var PurchaseOrderStyle = StyleSheet.create({
         justifyContent: 'center'
     },
     contentItemText:{
-        flex: 1
+        flex: 2
     },
     contentlableTitle:{
         fontSize: 18,
@@ -28,7 +28,22 @@ var PurchaseOrderStyle = StyleSheet.create({
     textTitleList:{
         fontSize: 20,
         fontWeight: 'bold' 
-    }
+    },
+    itemInfo:{
+        flexDirection: 'row'
+    },
+    ItemInfoLable: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    ItemInfoText:{
+        flex: 3
+    },
+    ItemInfoRadio:{
+        flex: 3,
+        flexDirection: 'row'
+    },
 });
 
-export default PurchaseOrderStyle;
+export default InventoryStyle;

@@ -9,7 +9,7 @@ import Modal from 'react-native-modalbox';
 
 import CommonStyle from '../../../public/css/common/CommonStyle';
 import ModalStyle from '../../../public/css/common/ModalStyle';
-import PurchaseOrderStyle from '../../../public/css/purchase/PurchaseOrderStyle';
+import PaymentSlipStyle from '../../../public/css/payment-slip/PaymentSlipStyle';
 import FlatListCommonStyle from '../../../public/css/common/FlatListCommonStyle';
 
 //Common
@@ -20,16 +20,14 @@ import PickerCommon from '../common/PickerCommon';
 //Image
 import * as ImagesCommon from '../../common/ImagesCommon';
 
-const listProduct = [
+const listPayment = [
     {
-        id: 1,
-        name: "Bánh Hambuger",
+        reson: "Mua pessi",
         qty: 2,
         amount: "150,000đ"
     },
     {
-        id: 2,
-        name: "Bánh Pit",
+        reson: "Mua khăn giấy",
         qty: 5,
         amount: "250,000đ"
     }
@@ -50,11 +48,11 @@ const listKeyProduct = [
     }
 ];
 
-export default class PurchaseOrder extends Component {
+export default class PaymentSlip extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orderDate: new Date(),
+            orderPayment: new Date(),
             isDateTimePickerVisible: false,
             isOpen: false,
             selectedProduct: ''
@@ -67,13 +65,13 @@ export default class PurchaseOrder extends Component {
     _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
     _handleDatePicked = (date) => {
-        this.setState({ orderDate: date });
+        this.setState({ orderPayment: date });
         console.log('A date has been picked: ', date);
         this._hideDateTimePicker();
     };
 
     setDate(newDate) {
-        this.setState({ orderDate: newDate })
+        this.setState({ orderPayment: newDate })
     }
 
     _renderItem = ({ item }) => {
@@ -81,7 +79,7 @@ export default class PurchaseOrder extends Component {
         return (
             <ListItem style={resultItem}>
                 <View style={itemLeft}>
-                    <Text>{item.name}</Text>
+                    <Text>{item.reson}</Text>
                 </View>
                 <View style={[itemBody, itemBodyNumber]}>
                     <Text>{item.qty}</Text>
@@ -94,23 +92,23 @@ export default class PurchaseOrder extends Component {
     }
 
     render() {
-        var { bodyContent, ImageWH40, fontWeight, fontSize18,height350 } = CommonStyle;
+        var { bodyContent, ImageWH40, fontWeight, fontSize18, height350 } = CommonStyle;
         var { headerContent, contentItemLable, contentItemText, contentlableTitle,
-            listTitle, textTitleList } = PurchaseOrderStyle;
+            listTitle, textTitleList } = PaymentSlipStyle;
         var { resultTotal, totalLeft, totalBody, totalBodyNumber, totalRight } = FlatListCommonStyle;
         let { modalBody, modalContent, modalFooter, modalButton,
             modalItem, modalItemLable, modalItemText } = ModalStyle;
         let BContent = <Button onPress={() => this.setState({ isOpen: false })}><Text>X</Text></Button>;
         return (
             <Container>
-                <MainHeader title="Đơn nhập hàng" showBack={true} backName="ListPurchaseOrder" navigation={this.props.navigation} />
+                <MainHeader title="Chi tiết phiếu chi" showBack={true} backName="ListPurchaseOrder" navigation={this.props.navigation} />
                 <Content style={bodyContent}>
                     <TouchableOpacity style={headerContent} onPress={this._showDateTimePicker}>
                         <View style={contentItemLable}>
-                            <Text style={contentlableTitle}>Ngày nhập hàng : </Text>
+                            <Text style={contentlableTitle}>Ngày chi : </Text>
                         </View>
                         <View style={contentItemText}>
-                            <Text style={contentlableTitle}>{Utils.formatDate(this.state.orderDate)}       {Utils.dayOfWeekDate(this.state.chosenDate)}</Text>
+                            <Text style={contentlableTitle}>{Utils.formatDate(this.state.orderPayment)}       {Utils.dayOfWeekDate(this.state.chosenDate)}</Text>
                             <DateTimePicker
                                 isVisible={this.state.isDateTimePickerVisible}
                                 onConfirm={this._handleDatePicked}
@@ -120,7 +118,7 @@ export default class PurchaseOrder extends Component {
                     </TouchableOpacity>
                     <View style={listTitle}>
                         <View>
-                            <Text style={textTitleList}>Danh sách sản phẩm</Text>
+                            <Text style={textTitleList}>Danh sách chi</Text>
                         </View>
                         <View>
                             <Button transparent onPress={() => { this.setState({ isOpen: true }) }}>
@@ -129,7 +127,7 @@ export default class PurchaseOrder extends Component {
                         </View>
                     </View>
                     <FlatList
-                        data={listProduct}
+                        data={listPayment}
                         renderItem={this._renderItem}
                     />
                     {/* List Total */}
@@ -146,12 +144,12 @@ export default class PurchaseOrder extends Component {
                     </ListItem>
                 </Content>
                 {/* Dialog modal */}
-                <Modal style={[modalBody,height350]} isOpen={this.state.isOpen}
+                <Modal style={[modalBody, height350]} isOpen={this.state.isOpen}
                     onClosed={() => this.setState({ isOpen: false })}
                     position={"center"} backdropContent={BContent}>
                     <Header>
                         <Body>
-                            <Title>Thêm nhân viên</Title>
+                            <Title>Nhập nội dung chi</Title>
                         </Body>
                         <Right>
                             <Button transparent onPress={() => this.setState({ isOpen: false })}>
@@ -162,21 +160,11 @@ export default class PurchaseOrder extends Component {
                     <Content style={[modalContent]}>
                         <View style={modalItem}>
                             <View style={modalItemLable}>
-                                <Text style={[fontWeight, fontSize18]}>Nhân viên : </Text>
-                            </View>
-                            <View style={modalItemText}>
-                                <PickerCommon headeText="Chọn sản phẩm" selectedValue={this.state.selectedProduct}
-                                    onValueChange={(itemValue, itemIndex) => this.setState({ selectedProduct: itemValue })}
-                                    data={listKeyProduct} />
-                            </View>
-                        </View>
-                        <View style={modalItem}>
-                            <View style={modalItemLable}>
-                                <Text style={[fontWeight, fontSize18]}>Đơn giá : </Text>
+                                <Text style={[fontWeight, fontSize18]}>Lý do chi : </Text>
                             </View>
                             <View style={modalItemText}>
                                 <Item>
-                                    <Input keyboardType="numeric" value="15,000" />
+                                    <Input value="Mua pessi" multiline={true} numberOfLines={3}/>
                                 </Item>
                             </View>
                         </View>
@@ -192,11 +180,11 @@ export default class PurchaseOrder extends Component {
                         </View>
                         <View style={modalItem}>
                             <View style={modalItemLable}>
-                                <Text style={[fontWeight, fontSize18]}>Thành tiền : </Text>
+                                <Text style={[fontWeight, fontSize18]}>Tổng tiền : </Text>
                             </View>
                             <View style={modalItemText}>
                                 <Item>
-                                    <Input keyboardType="numeric" value="30,000" />
+                                    <Input keyboardType="numeric" value="15,000" />
                                 </Item>
                             </View>
                         </View>

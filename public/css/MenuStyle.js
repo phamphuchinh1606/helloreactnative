@@ -9,15 +9,9 @@ var MenuStyle = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between'
     },
-    userInfor:{
-        flex: 2,
-        backgroundColor: '#CCFFFF',
+    headerMenu:{
         alignItems: 'center',
-        paddingTop: 5
-    },
-    userInforText:{
-        fontSize: 18,
-        fontWeight: 'bold'
+        justifyContent: 'center'
     },
     cotentMenu:{
         flex: 7,
@@ -26,18 +20,25 @@ var MenuStyle = StyleSheet.create({
     menuItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 10
+        marginTop: 5, 
+        marginBottom: 5
     },
     textItem: {
-        fontSize: 18,
-        marginLeft: 15
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    imageIcon:{
+        width: 40,
+        height: 40
     },
     footer:{
-        flex: 1,
-        backgroundColor: '#FFE4C4'
+        backgroundColor: '#FFE4C4',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: height/100
     },
     footerItem: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'

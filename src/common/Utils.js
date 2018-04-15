@@ -27,7 +27,7 @@ export default class Utils{
 
     static renderItemWeekPicker = () =>{
         var list = [];
-        for(var i = 2 ; i <= 5 ; i++){
+        for(var i = 1 ; i <= 5 ; i++){
             var item = {
                 label : "Tuần " + i.toString(),
                 value : i.toString()

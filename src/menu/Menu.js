@@ -6,56 +6,53 @@ import {
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
+import MenuStyle from '../../public/css/MenuStyle';
+
 //Image
-import userIcon from '../../images/menu/user-menu.png';
-import logoutIcon from '../../images/menu/logout.png';
-import employeeIcon from '../../images/menu/employee.png';
-import orderIcon from '../../images/menu/order-sale.png';
-import paymentSlipIcon from '../../images/menu/payment-slip.png';
-import receiptIcon from '../../images/menu/receipt.png';
+import * as ImageCommon from '../common/ImagesCommon';
 
 const listMenu = [
     {
         id: 1,
         name: 'Nhân viên',
-        imageIcon: employeeIcon,
+        imageIcon: ImageCommon.EmployeeIcon,
         screenName: 'Employees'
     },
     {
         id: 2,
         name: 'Sản phẩm',
-        imageIcon: employeeIcon,
+        imageIcon: ImageCommon.ProductIcon,
         screenName: 'ListProduct'
     },
     {
         id: 3,
         name: 'Chấm công',
-        imageIcon: employeeIcon,
+        imageIcon: ImageCommon.TimeKeepingIcon,
         screenName: 'ListTimeKeeping'
     },
     {
         id: 4,
         name: 'Lương nhân viên',
-        imageIcon: employeeIcon,
+        imageIcon: ImageCommon.SalaryIcon,
         screenName: 'EmployeeSalary'
     },
     {
         id: 5,
         name: 'Doanh số bán hàng',
-        imageIcon: orderIcon,
+        imageIcon: ImageCommon.SaleIcon,
         screenName: 'ListOrder'
     },
     {
         id: 6,
-        name: 'Phiếu thu',
-        imageIcon: receiptIcon,
-        screenName: 'Employees'
+        name: 'Đơn mua hàng',
+        imageIcon: ImageCommon.PurchaseIcon,
+        screenName: 'ListPurchaseOrder'
     },
     {
-        id: 7,
+        id: 8,
         name: 'Phiếu chi',
-        imageIcon: paymentSlipIcon,
-        screenName: 'Employees'
+        imageIcon: ImageCommon.PaymentSlipIcon,
+        screenName: 'ListPaymentSlip'
     }
 ];
 
@@ -70,14 +67,15 @@ export default class Menu extends Component {
 
     renderRowListMenuItem(rowData) {
         var { navigation } = this.props;
+        var {menuItem,imageIcon,textItem} = MenuStyle;
         return (
-            <ListItem icon style={{ marginTop: 5, marginBottom: 5 }}>
+            <ListItem icon style={menuItem}>
                 <Left>
-                    <Image source={rowData.imageIcon} />
+                    <Image source={rowData.imageIcon} style={imageIcon}/>
                 </Left>
                 <Body>
                     <TouchableOpacity onPress={()=>navigation.navigate(rowData.screenName)}>
-                        <Text>{rowData.name}</Text>
+                        <Text style={textItem}>{rowData.name}</Text>
                     </TouchableOpacity>
                 </Body>
             </ListItem>
@@ -86,10 +84,11 @@ export default class Menu extends Component {
     }
 
     render() {
+        var {headerMenu,footer,footerItem,textFooter} = MenuStyle;
         return (
             <Container>
-                <Header>
-                    <Title>Menu</Title>
+                <Header style={headerMenu}>
+                    <Title>Phạm Phú Chinh</Title>
                 </Header>
                 <Content style={{ backgroundColor: '#ffff' }}>
                     <List>
@@ -99,6 +98,12 @@ export default class Menu extends Component {
                         />
                     </List>
                 </Content>
+                <Footer style={footer}>
+                    <Button transparent style={footerItem}>
+                        <Image source={ImageCommon.LogoutIcon}/>
+                        <Text style={textFooter}>Đăng xuất</Text>
+                    </Button>
+                </Footer>
             </Container>
         )
     }

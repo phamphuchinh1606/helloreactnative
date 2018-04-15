@@ -8,6 +8,20 @@ let CommonStyle = StyleSheet.create({
         backgroundColor: '#FFFF',
         margin: 10
     },
+    //Height
+    height300:{
+        height: 300
+    },
+    height350:{
+        height: 350
+    },
+    height400:{
+        height: 400
+    },
+    height450:{
+        height: 450
+    },
+
     //Font
     fontWeight:{
         fontWeight: 'bold'
@@ -73,7 +87,19 @@ let CommonStyle = StyleSheet.create({
     // Flex
     flexDirecRowBetween:{
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    flexDirecRowStart:{
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
+    flexDirecRowEnd:{
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        flex: 1
     },
 
     //Header item

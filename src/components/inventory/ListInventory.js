@@ -11,43 +11,33 @@ import Utils from '../../common/Utils';
 
 import CommonStyle from '../../../public/css/common/CommonStyle';
 import FlatListCommonStyle from '../../../public/css/common/FlatListCommonStyle';
-import ListPurchaseOrderStyle from '../../../public/css/purchase/ListPurchaseOrderStyle';
+import ListInventoryStyle from '../../../public/css/inventory/ListInventoryStyle';
 
 //Image
-import addIcon from '../../../images/add-icon.png';
+import * as ImageCommon from '../../common/ImagesCommon';
 
-const listOrder = [
+const listPaymentSlip = [
     {
-        id: 10001,
         date: '12/02/2018',
-        totalAmount: '2,500,000đ'
+        totalQty : '100'
     },
     {
-        id: 10002,
         date: '13/02/2018',
-        totalAmount: '2,500,000đ'
+        totalQty : '110'
     },
     {
-        id: 10003,
         date: '14/02/2018',
-        totalAmount: '3,500,000đ'
+        totalQty : '120'
     },
     {
-        id: 10004,
         date: '15/02/2018',
-        totalQty: '105',
-        totalAmount: '4,500,000đ'
-    },
-    {
-        id: 10005,
-        date: '16/02/2018',
-        totalAmount: '5,500,000đ'
+        totalQty : '130'
     }
 ];
 
-const listMonth = Utils.renderItemMonthPicker();
+const listWeek = Utils.renderItemWeekPicker();
 
-export default class ListPurchaseOrder extends Component {
+export default class ListInventory extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -56,17 +46,19 @@ export default class ListPurchaseOrder extends Component {
     }
 
     _renderItem = ({ item }) => {
-        var { resultItem, itemLeft1, itemBody, itemBodyText, itemRight } = FlatListCommonStyle;
+        var { resultItem, itemLeft1, itemBody, itemBodyNumber, itemRight } = FlatListCommonStyle;
         return (
             <ListItem style={resultItem}>
                 <View style={itemLeft1}>
-                    <Text>{item.id}</Text>
-                </View>
-                <View style={[itemBody, itemBodyText]}>
                     <Text>{item.date}</Text>
                 </View>
+                <View style={[itemBody, itemBodyNumber]}>
+                    <Text>{item.totalQty}</Text>
+                </View>
                 <View style={itemRight}>
-                    <Text>{item.totalAmount}</Text>
+                    <Button onPress={()=>this.props.navigation.navigate("Inventory")}>
+                        <Text>View</Text>
+                    </Button>
                 </View>
             </ListItem>
         )
@@ -75,17 +67,17 @@ export default class ListPurchaseOrder extends Component {
     render() {
         var { bodyContent, fontWeight, fontSize18, marginTop10, marginBottom10,
             flexDirecRowStart, flexDirecRowEnd, paddingTop10, paddingRight10, ImageWH40 } = CommonStyle;
-        var { searchInfo, searchLabel, searchText, resultTitle } = ListPurchaseOrderStyle;
+        var { searchInfo, searchLabel, searchText, resultTitle } = ListInventoryStyle;
         return (
             <Container>
-                <MainHeader title="Đơn Nhập Hàng" showMenu={true} navigation={this.props.navigation} />
+                <MainHeader title="Danh sách tồn" showMenu={true} navigation={this.props.navigation} />
                 <Content style={bodyContent}>
                     <View style={searchInfo}>
                         <View style={searchLabel}>
-                            <Text style={[fontWeight, fontSize18]}>Tháng : </Text>
+                            <Text style={[fontWeight, fontSize18]}>Tuần : </Text>
                         </View>
                         <View style={searchText}>
-                            <PickerCommon data={listMonth} headerText="Chọn tháng" value={this.state.weekValue}
+                            <PickerCommon data={listWeek} headerText="Chọn tuần" value={this.state.weekValue}
                                 onValueChange={(itemValue, itemIndex) => this.setState({ weekValue: itemValue })} />
                         </View>
                     </View>
@@ -97,25 +89,17 @@ export default class ListPurchaseOrder extends Component {
                             <Text style={fontSize18}> Từ 14/02/2018 đến 13/03/2018 </Text>
                         </View>
                     </View>
-                    <View style={[searchInfo, marginTop10, marginBottom10]}>
-                        <View style={searchLabel}>
-                            <Text style={[fontWeight, fontSize18]}>Tổng tiền : </Text>
-                        </View>
-                        <View style={searchText}>
-                            <Text style={fontSize18}> 3,500,000đ </Text>
-                        </View>
-                    </View>
                     <View style={[flexDirecRowStart, paddingTop10, paddingRight10]}>
-                        <Text style={resultTitle}>Danh sách đơn nhập hàng</Text>
+                        <Text style={resultTitle}>Danh sách tồn theo ngày</Text>
                         <View style={flexDirecRowEnd}>
-                            <Button transparent onPress={() => { this.props.navigation.navigate("PurchaseOrder") }}>
-                                <Image source={addIcon} style={ImageWH40} />
+                            <Button transparent onPress={() => { this.props.navigation.navigate("Inventory") }}>
+                                <Image source={ImageCommon.AddIcon} style={ImageWH40} />
                             </Button>
                         </View>
                     </View>
                     <List >
                         <FlatList
-                            data={listOrder}
+                            data={listPaymentSlip}
                             renderItem={this._renderItem}
                         />
                     </List>

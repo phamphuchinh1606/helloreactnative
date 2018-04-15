@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
-var PurchaseOrderStyle = StyleSheet.create({
+var PaymentSlipStyle = StyleSheet.create({
     headerContent:{
         flexDirection: 'row',
         padding:20,
@@ -13,7 +13,7 @@ var PurchaseOrderStyle = StyleSheet.create({
         justifyContent: 'center'
     },
     contentItemText:{
-        flex: 1
+        flex: 2
     },
     contentlableTitle:{
         fontSize: 18,
@@ -31,4 +31,4 @@ var PurchaseOrderStyle = StyleSheet.create({
     }
 });
 
-export default PurchaseOrderStyle;
+export default PaymentSlipStyle;
