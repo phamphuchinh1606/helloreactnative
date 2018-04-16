@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { View, Image, FlatList } from 'react-native';
-import { Container, Header, Body, Content, Footer, Text, Button, Icon, List, ListItem, Item, Input,
-    Left,Right } from 'native-base';
+import {
+    Container, Header, Body, Content, Footer, Text, Button, Icon, List, ListItem, Item, Input,
+    Left, Right
+} from 'native-base';
 
 import MainHeader from '../main/MainHeader';
 
@@ -10,8 +12,7 @@ import FlatListCommonStyle from '../../../public/css/common/FlatListCommonStyle'
 import CommonStyle from '../../../public/css/common/CommonStyle';
 
 //Image
-import addIcon from '../../../images/add-icon.png';
-
+import * as ImageCommon from '../../common/ImagesCommon';
 
 const listProduct = [
     {
@@ -51,7 +52,7 @@ export default class ListProduct extends Component {
     _renderItem = ({ item }) => {
         var { resultItem, itemLeft, itemBody, itemBodyText, itemRight } = FlatListCommonStyle;
         return (
-            <ListItem style={resultItem}>
+            <ListItem style={resultItem} key={item.id}>
                 <View style={itemLeft}>
                     <Text>{item.name}</Text>
                 </View>
@@ -68,10 +69,10 @@ export default class ListProduct extends Component {
     render() {
         var { navigation } = this.props;
         var { bodyContent, resultTitle } = ListProductStyle;
-        var {ImageWH40, flexDirecRowBetween,paddingTop10,paddingRight10} = CommonStyle;
+        var { ImageWH40, flexDirecRowBetween, paddingTop10, paddingRight10 } = CommonStyle;
         return (
             <Container>
-                <MainHeader navigation={navigation} title="Sản phẩm" showMenu={true} />
+                <MainHeader navigation={navigation} title="Sản phẩm" showMenu={true} iconLeft={ImageCommon.ProductIcon} />
                 <Content>
                     <Header searchBar rounded>
                         <Item>
@@ -80,23 +81,21 @@ export default class ListProduct extends Component {
                         </Item>
                     </Header>
                     <Content style={bodyContent}>
-                        <View style={[flexDirecRowBetween,paddingTop10,paddingRight10]}>
+                        <View style={[flexDirecRowBetween, paddingTop10, paddingRight10]}>
                             <Left>
                                 <Text style={resultTitle}>Danh sách sản phẩm</Text>
                             </Left>
                             <Right>
                                 <Button transparent onPress={() => { this.props.navigation.navigate("ProductDetail") }}>
-                                    <Image source={addIcon} style={ImageWH40}/>
+                                    <Image source={ImageCommon.AddIcon} style={ImageWH40} />
                                 </Button>
                             </Right>
                         </View>
-                        
-                        <List>
-                            <FlatList
-                                data={listProduct}
-                                renderItem={this._renderItem}
-                            />
-                        </List>
+
+                        <FlatList
+                            data={listProduct}
+                            renderItem={this._renderItem}
+                        />
                     </Content>
                 </Content>
             </Container>

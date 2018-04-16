@@ -6,7 +6,9 @@ import {
 } from 'native-base';
 
 import MainHeader from '../main/MainHeader';
+import MainFooter from '../main/MainFooter';
 import PickerCommon from '../common/PickerCommon';
+import * as ImagesCommon from '../../common/ImagesCommon';
 import Utils from '../../common/Utils';
 
 import CommonStyle from '../../../public/css/common/CommonStyle';
@@ -78,7 +80,8 @@ export default class ListPurchaseOrder extends Component {
         var { searchInfo, searchLabel, searchText, resultTitle } = ListPurchaseOrderStyle;
         return (
             <Container>
-                <MainHeader title="Đơn Nhập Hàng" showMenu={true} navigation={this.props.navigation} />
+                <MainHeader title="Đơn Nhập Hàng" showMenu={true} navigation={this.props.navigation} 
+                    iconLeft={ImagesCommon.PurchaseIcon}/>
                 <Content style={bodyContent}>
                     <View style={searchInfo}>
                         <View style={searchLabel}>
@@ -109,7 +112,7 @@ export default class ListPurchaseOrder extends Component {
                         <Text style={resultTitle}>Danh sách đơn nhập hàng</Text>
                         <View style={flexDirecRowEnd}>
                             <Button transparent onPress={() => { this.props.navigation.navigate("PurchaseOrder") }}>
-                                <Image source={addIcon} style={ImageWH40} />
+                                <Image source={ImagesCommon.AddIcon} style={ImageWH40} />
                             </Button>
                         </View>
                     </View>
@@ -120,18 +123,7 @@ export default class ListPurchaseOrder extends Component {
                         />
                     </List>
                 </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button vertical active>
-                            <Icon name="apps" active />
-                            <Text>Tháng</Text>
-                        </Button>
-                        <Button vertical>
-                            <Icon name="camera" />
-                            <Text>Ngày</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
+                <MainFooter/>
             </Container>
         )
     }

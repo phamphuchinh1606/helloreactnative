@@ -1,70 +1,76 @@
 import React, { Component } from 'react';
-import { View, TextInput, ListView } from 'react-native';
+import { View, TextInput, FlatList } from 'react-native';
 import {
     Container, Header, Content, Footer, Body, Text, Picker, Item,
     ListItem, Thumbnail, Left, Right, Button, Icon, FooterTab
 } from 'native-base';
 
-import EmployeeSalaryStyle from '../../../public/css/salary/EmployeeSalaryStyle';
-import MainHeader from '../main/MainHeader';
+import * as ImageCommon from '../../common/ImagesCommon';
+import Utils from '../../common/Utils';
+import PickerCommon from '../common/PickerCommon';
 
-const listNhanVien = [
+import EmployeeSalaryStyle from '../../../public/css/salary/EmployeeSalaryStyle';
+import FlatListCommonStyle from '../../../public/css/common/FlatListCommonStyle';
+import MainHeader from '../main/MainHeader';
+import MainFooter from '../main/MainFooter';
+
+const listEmployeeSalary = [
     {
         id: 1,
         name: 'Pham Phu Chinh',
-        amount: '100,000đ',
-        image: require('../../../images/chinh.png')
+        totalHours: '1 giờ',
+        amount: '100,000đ'
     },
     {
         id: 2,
         name: 'pham dang thuy',
+        totalHours: '3 giờ',
+        amount: '200,000đ'
+    },
+    {
+        id: 3,
+        name: 'Phạm Thị Ly',
+        totalHours: '2 giờ',
+        amount: '200,000đ'
+    },
+    {
+        id: 4,
+        name: 'Đoàn Nhân',
+        totalHours: '5 giờ',
         amount: '200,000đ',
         image: require('../../../images/thuy.png')
     },
     {
-        id: 2,
-        name: 'pham dang thuy',
-        amount: '200,000đ',
-        image: require('../../../images/thuy.png')
-    },
-    {
-        id: 2,
-        name: 'pham dang thuy',
-        amount: '200,000đ',
-        image: require('../../../images/thuy.png')
-    },
-    {
-        id: 2,
-        name: 'pham dang thuy',
-        amount: '200,000đ',
-        image: require('../../../images/thuy.png')
+        id: 5,
+        name: 'Lương Trang',
+        totalHours: '5 giờ',
+        amount: '200,000đ'
     }
 ];
+
+const listWeek = Utils.renderItemWeekPicker();
 
 export default class EmployeeSalary extends Component {
     constructor(props) {
         super(props);
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
-            weekValue: "1",
-            listEmployees: ds.cloneWithRows(listNhanVien)
+            weekValue: "1"
         }
     }
 
-    renderRowListEmployees(rowData) {
+    _renderItem = ({ item }) => {
         var { navigation } = this.props;
+        var { resultItem, itemLeft1, itemBody, itemBodyNumber, itemRight } = FlatListCommonStyle;
         return (
-            <ListItem>
-                <Left>
-                    <Text>{rowData.name}</Text>
+            <ListItem style={resultItem}>
+                <Left style={itemLeft1}>
+                    <Text>{item.name}</Text>
                 </Left>
-                <Body>
-                    <Text>{rowData.amount}</Text>
+                <Body style={[itemBody,itemBodyNumber]}>
+                    <Text>{item.totalHours}</Text>
                 </Body>
-                <Right>
-                    <Button transparent info onPress={()=>navigation.navigate("EmployeeSalaryDetail")}>
-                        <Icon name="navigate" />
-                    </Button>
+                <Right style={itemRight}>
+                    <Text>{item.amount}</Text>
                 </Right>
             </ListItem>
         );
@@ -76,25 +82,16 @@ export default class EmployeeSalary extends Component {
         var { navigation } = this.props;
         return (
             <Container style={{ backgroundColor: '#EEE9E9' }}>
-                <MainHeader navigation={navigation} title="Lương nhân viên" showMenu={true} />
+                <MainHeader navigation={navigation} title="Lương nhân viên" showMenu={true} iconLeft={ImageCommon.SalaryIcon} />
                 <Content style={bodyContent}>
                     <View style={searchInfo}>
                         <View style={searchLable}>
                             <Text>Tuần : </Text>
                         </View>
                         <View style={searchText}>
-                            <Picker
-                                mode="dropdown"
-                                headerBackButtonText="Chọn tuần"
-                                selectedValue={this.state.weekValue}
-                                onValueChange={(itemValue, itemIndex) => this.setState({ weekValue: itemValue })}
-                            >
-                                <Item label="Tuần 1" value="1" />
-                                <Item label="Tuần 2" value="2" />
-                                <Item label="Tuần 3" value="3" />
-                                <Item label="Tuần 4" value="4" />
-                                <Item label="Tuần 5" value="5" />
-                            </Picker>
+                            <PickerCommon data={listWeek} selectedValue={this.state.weekValue} 
+                                headerText="Chọn tuần"
+                                onValueChange={(itemValue, itemIndex) => this.setState({ weekValue: itemValue })}/>
                         </View>
                     </View>
                     <View style={searchInfo}>
@@ -107,24 +104,13 @@ export default class EmployeeSalary extends Component {
                     </View>
                     <View>
                         <Text style={resultTitle}>Danh sách nhân viên</Text>
-                        <ListView
-                            dataSource={this.state.listEmployees}
-                            renderRow={(rowData) => this.renderRowListEmployees(rowData)}
+                        <FlatList
+                            data={listEmployeeSalary}
+                            renderItem={this._renderItem}
                         />
                     </View>
                 </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button vertical active>
-                            <Icon name="apps" active/>
-                            <Text>Tuần</Text>
-                        </Button>
-                        <Button vertical>
-                            <Icon name="camera" />
-                            <Text>Tháng</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
+                <MainFooter/>
             </Container>
         )
     }

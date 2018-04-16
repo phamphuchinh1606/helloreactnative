@@ -6,7 +6,10 @@ import {
 } from 'native-base';
 
 import MainHeader from '../main/MainHeader';
+import MainFooter from '../main/MainFooter';
 import PickerCommon from '../common/PickerCommon';
+import * as ImagesCommon from '../../common/ImagesCommon';
+import Utils from '../../common/Utils';
 
 import CommonStyle from '../../../public/css/common/CommonStyle';
 import FlatListCommonStyle from '../../../public/css/common/FlatListCommonStyle';
@@ -48,28 +51,7 @@ const listOrder = [
     }
 ];
 
-const listWeek = [
-    {
-        value: "1",
-        label: "tuần 1"
-    },
-    {
-        value: "2",
-        label: "tuần 2"
-    },
-    {
-        value: "3",
-        label: "tuần 3"
-    },
-    {
-        value: "4",
-        label: "tuần 4"
-    },
-    {
-        value: "5",
-        label: "tuần 5"
-    }
-];
+const listWeek = Utils.renderItemWeekPicker();
 
 export default class ListOrder extends Component {
     constructor(props) {
@@ -102,7 +84,8 @@ export default class ListOrder extends Component {
         var { searchInfo, searchLabel, searchText, resultTitle } = ListOrderStyle;
         return (
             <Container>
-                <MainHeader title="Doanh số bán hàng" showMenu={true} navigation={this.props.navigation} />
+                <MainHeader title="Doanh số bán hàng" showMenu={true} navigation={this.props.navigation} 
+                    iconLeft={ImagesCommon.SaleIcon}/>
                 <Content style={bodyContent}>
                     <View style={searchInfo}>
                         <View style={searchLabel}>
@@ -131,7 +114,7 @@ export default class ListOrder extends Component {
                     </View>
                     <View style={[flexDirecRowBetween, paddingTop10, paddingRight10]}>
                         <Left>
-                            <Text style={resultTitle}>Danh sách sản phẩm</Text>
+                            <Text style={resultTitle}>Danh số theo ngày</Text>
                         </Left>
                         <Right>
                             <Button transparent onPress={() => { this.props.navigation.navigate("InputOrder") }}>
@@ -146,18 +129,7 @@ export default class ListOrder extends Component {
                         />
                     </List>
                 </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button vertical active>
-                            <Icon name="apps" active />
-                            <Text>Tuần</Text>
-                        </Button>
-                        <Button vertical>
-                            <Icon name="camera" />
-                            <Text>Tháng</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
+                <MainFooter/>
             </Container>
         )
     }

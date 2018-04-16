@@ -3,7 +3,7 @@ import { View, TouchableOpacity, TouchableHighlight, Image, FlatList } from 'rea
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import {
     Container, Header, Body, Content, Footer, Text, Button, Title, Left, Right, ListItem, Picker, Item,
-    Label, Input
+    Label, Input, SwipeRow, Icon
 } from 'native-base';
 import Modal from 'react-native-modalbox';
 
@@ -21,6 +21,90 @@ import PickerCommon from '../common/PickerCommon';
 import * as ImagesCommon from '../../common/ImagesCommon';
 
 const listProduct = [
+    {
+        id: 1,
+        name: "Bánh Hambuger",
+        qty: 2,
+        amount: "150,000đ"
+    },
+    {
+        id: 2,
+        name: "Bánh Pit",
+        qty: 5,
+        amount: "250,000đ"
+    },
+    {
+        id: 1,
+        name: "Bánh Hambuger",
+        qty: 2,
+        amount: "150,000đ"
+    },
+    {
+        id: 2,
+        name: "Bánh Pit",
+        qty: 5,
+        amount: "250,000đ"
+    },
+    {
+        id: 1,
+        name: "Bánh Hambuger",
+        qty: 2,
+        amount: "150,000đ"
+    },
+    {
+        id: 2,
+        name: "Bánh Pit",
+        qty: 5,
+        amount: "250,000đ"
+    },
+    {
+        id: 1,
+        name: "Bánh Hambuger",
+        qty: 2,
+        amount: "150,000đ"
+    },
+    {
+        id: 2,
+        name: "Bánh Pit",
+        qty: 5,
+        amount: "250,000đ"
+    },
+    {
+        id: 1,
+        name: "Bánh Hambuger",
+        qty: 2,
+        amount: "150,000đ"
+    },
+    {
+        id: 2,
+        name: "Bánh Pit",
+        qty: 5,
+        amount: "250,000đ"
+    },
+    {
+        id: 1,
+        name: "Bánh Hambuger",
+        qty: 2,
+        amount: "150,000đ"
+    },
+    {
+        id: 2,
+        name: "Bánh Pit",
+        qty: 5,
+        amount: "250,000đ"
+    },
+    {
+        id: 1,
+        name: "Bánh Hambuger",
+        qty: 2,
+        amount: "150,000đ"
+    },
+    {
+        id: 2,
+        name: "Bánh Pit",
+        qty: 5,
+        amount: "250,000đ"
+    },
     {
         id: 1,
         name: "Bánh Hambuger",
@@ -76,25 +160,52 @@ export default class PurchaseOrder extends Component {
         this.setState({ orderDate: newDate })
     }
 
-    _renderItem = ({ item }) => {
+    _renderItem = ({ item, index }) => {
         var { resultItem, itemLeft, itemBody, itemBodyNumber, itemRight } = FlatListCommonStyle;
         return (
-            <ListItem style={resultItem}>
-                <View style={itemLeft}>
-                    <Text>{item.name}</Text>
-                </View>
-                <View style={[itemBody, itemBodyNumber]}>
-                    <Text>{item.qty}</Text>
-                </View>
-                <View style={itemRight}>
-                    <Text>{item.amount}</Text>
-                </View>
-            </ListItem>
+            <SwipeRow style={{flex:1}}
+                // leftOpenValue={75}
+                rightOpenValue={-75}
+                // left={
+                //     <Button success onPress={() => alert('Add')}>
+                //         <Icon active name="add" />
+                //     </Button>
+                // }
+                body={
+                    <View style={resultItem}>
+                        <View style={itemLeft}>
+                            <Text>{item.name} {index}</Text>
+                        </View>
+                        <View style={[itemBody, itemBodyNumber]}>
+                            <Text>{item.qty}</Text>
+                        </View>
+                        <View style={itemRight}>
+                            <Text>{item.amount}</Text>
+                        </View>
+                    </View>
+                }
+                right={
+                    <Button danger onPress={() => alert('Trash')}>
+                        <Icon active name="trash" />
+                    </Button>
+                }
+            />
+            // <ListItem style={resultItem}>
+            //     <View style={itemLeft}>
+            //         <Text>{item.name} {index}</Text>
+            //     </View>
+            //     <View style={[itemBody, itemBodyNumber]}>
+            //         <Text>{item.qty}</Text>
+            //     </View>
+            //     <View style={itemRight}>
+            //         <Text>{item.amount}</Text>
+            //     </View>
+            // </ListItem>
         )
     }
 
     render() {
-        var { bodyContent, ImageWH40, fontWeight, fontSize18,height350 } = CommonStyle;
+        var { bodyContent, ImageWH40, fontWeight, fontSize18, height350 } = CommonStyle;
         var { headerContent, contentItemLable, contentItemText, contentlableTitle,
             listTitle, textTitleList } = PurchaseOrderStyle;
         var { resultTotal, totalLeft, totalBody, totalBodyNumber, totalRight } = FlatListCommonStyle;
@@ -146,7 +257,7 @@ export default class PurchaseOrder extends Component {
                     </ListItem>
                 </Content>
                 {/* Dialog modal */}
-                <Modal style={[modalBody,height350]} isOpen={this.state.isOpen}
+                <Modal style={[modalBody, height350]} isOpen={this.state.isOpen}
                     onClosed={() => this.setState({ isOpen: false })}
                     position={"center"} backdropContent={BContent}>
                     <Header>

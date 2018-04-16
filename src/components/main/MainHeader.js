@@ -6,7 +6,13 @@ import HeaderStyle from '../../../public/css/main/HeaderStyle';
 
 export default class MainHeader extends Component {
 
-    getBackJsx(showBack) {
+    getBackJsx(showBack,iconLeft) {
+        let {leftImageIcon} = HeaderStyle;
+        if(iconLeft != null){
+            return (
+                <Image source={iconLeft} style={leftImageIcon}/>
+            );
+        }
         if (!showBack) {
             return (
                 <View/>
@@ -38,10 +44,11 @@ export default class MainHeader extends Component {
         let { navigation } = this.props;
         let { showMenu } = this.props;
         let { showBack } = this.props;
+        let { iconLeft } = this.props; 
         
         return (
             <Header style={headerContent}>
-                {this.getBackJsx(showBack)}
+                {this.getBackJsx(showBack,iconLeft)}
                 <Title>{this.props.title}</Title>
                 {this.getMenuJsx(showMenu)}
             </Header>

@@ -36,7 +36,7 @@ var MenuStyle = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height/100
+        paddingTop: height/120
     },
     footerItem: {
         flexDirection: 'row',

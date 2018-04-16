@@ -12,7 +12,11 @@ var HeaderStyle = StyleSheet.create({
     textHeader:{
         color: '#fff',
         fontSize: 20
-    }
+    },
+    leftImageIcon:{
+        width: 40,
+        height: 40
+    },
 });
 
 export default HeaderStyle;

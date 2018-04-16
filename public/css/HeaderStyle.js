@@ -15,6 +15,10 @@ var HeaderStyle = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
+    leftImageIcon:{
+        width: 20,
+        height: 20
+    },
     textHeader:{
         color: '#fff',
         fontSize: 20

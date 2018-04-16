@@ -53,6 +53,12 @@ const listMenu = [
         name: 'Phiếu chi',
         imageIcon: ImageCommon.PaymentSlipIcon,
         screenName: 'ListPaymentSlip'
+    },
+    {
+        id: 9,
+        name: 'Tồn kho',
+        imageIcon: ImageCommon.InventoryIcon,
+        screenName: 'ListInventory'
     }
 ];
 

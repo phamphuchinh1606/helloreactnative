@@ -6,6 +6,7 @@ import {
 } from 'native-base';
 
 import MainHeader from '../main/MainHeader';
+import MainFooter from '../main/MainFooter';
 import PickerCommon from '../common/PickerCommon';
 import Utils from '../../common/Utils';
 
@@ -70,7 +71,8 @@ export default class ListInventory extends Component {
         var { searchInfo, searchLabel, searchText, resultTitle } = ListInventoryStyle;
         return (
             <Container>
-                <MainHeader title="Danh sách tồn" showMenu={true} navigation={this.props.navigation} />
+                <MainHeader title="Danh sách tồn" showMenu={true} navigation={this.props.navigation} 
+                    iconLeft={ImageCommon.InventoryIcon}/>
                 <Content style={bodyContent}>
                     <View style={searchInfo}>
                         <View style={searchLabel}>
@@ -104,18 +106,7 @@ export default class ListInventory extends Component {
                         />
                     </List>
                 </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button vertical active>
-                            <Icon name="apps" active />
-                            <Text>Tháng</Text>
-                        </Button>
-                        <Button vertical>
-                            <Icon name="camera" />
-                            <Text>Ngày</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
+                <MainFooter/>
             </Container>
         )
     }

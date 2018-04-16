@@ -27,5 +27,13 @@ export const CloseIcon = closeIcon;
 
 // Common
 import addIcon from '../../images/add-icon.png';
+import viewIcon from '../../images/view-icon.png';
+import dayIcon from '../../images/day-icon.png';
+import weekIcon from '../../images/week-icon.png';
+import monthIcon from '../../images/month-icon.png';
 
 export const AddIcon = addIcon;
+export const ViewIcon = viewIcon;
+export const DayIcon = dayIcon;
+export const WeekIcon = weekIcon;
+export const MonthIcon = monthIcon;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, Button, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { DrawerNavigator, StackNavigator } from 'react-navigation';
+import Login from './components/auth/Login';
 import Main from './components/main/Main';
 import Employees from './components/employee/Employees';
 import Employee from './components/employee/Employee';
@@ -20,10 +21,15 @@ import PaymentSlip from './components/payment-slip/PaymentSlip';
 import ListInventory from './components/inventory/ListInventory';
 import Inventory from './components/inventory/Inventory';
 
+import SwipeableDemo from './demo/SwipeableDemo';
+
 const { height, width } = Dimensions.get('window');
 
 const DrawerMenu = DrawerNavigator(
     {
+        Login:{
+            screen: Login
+        },
         Main: {
             screen: Main
         },
@@ -74,10 +80,13 @@ const DrawerMenu = DrawerNavigator(
         },
         Inventory:{
             screen: Inventory
+        },
+        SwipeableDemo:{
+            screen : SwipeableDemo
         }
     },
     {
-        initialRouteName: 'ListInventory',
+        initialRouteName: 'Login',
         drawerWidth: width * 2 / 3,
         drawerPosition: 'left',
         contentComponent: props => <Menu {...props} />,

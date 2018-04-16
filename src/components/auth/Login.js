@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     Container, Header, Left, Body, Right, Button, Icon, Title, Text,
-    Content, Item, Input, Footer, View
+    Content, Item, Input, Footer, View, CheckBox, ListItem
 } from 'native-base';
 
 import LoginStyle from '../../../public/css/auth/LoginStyle';
@@ -36,6 +36,12 @@ export default class Login extends Component {
                     <Icon name='key' />
                     <Input placeholder='Mật khẩu' />
                 </Item>
+                <ListItem>
+                    <CheckBox checked={true} color="green"/>
+                    <Body>
+                        <Text>Ghi nhớ đăng nhập</Text>
+                    </Body>
+                </ListItem>
                 <Button block info>
                     <Text style={textButton}>Đăng nhập</Text>
                 </Button>
@@ -90,7 +96,7 @@ export default class Login extends Component {
             <Container>
                 <Header>
                     <Body style={headerBody}>
-                        <Title style={textTitle}>Màn Hình Đăng Nhập</Title>
+                        <Title style={textTitle}>Đăng Nhập</Title>
                     </Body>
                 </Header>
                 {loginContent}

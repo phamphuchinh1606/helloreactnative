@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { View, TextInput, ListView, Image } from 'react-native';
 import {
-    Container, Header, Content, Footer, Body, Text, Picker, Item,
+    Container, Header, Content, Footer, Body, Text, Item,
     ListItem, Thumbnail, Left, Right, Button, Icon, FooterTab
 } from 'native-base';
 
 //Image
-import viewIcon from '../../../images/view-icon.png';
+import * as ImageCommon from '../../common/ImagesCommon';
+import PickerCommon from '../common/PickerCommon';
+import Utils from '../../common/Utils';
 
 import ListTimeKeepingStyle from '../../../public/css/timekeeping/ListTimeKeepingStyle';
 import MainHeader from '../main/MainHeader';
+import MainFooter from '../main/MainFooter';
 import FlatListCommonStyle from '../../../public/css/common/FlatListCommonStyle';
 import CommonStyle from '../../../public/css/common/CommonStyle';
 
@@ -42,6 +45,8 @@ const listTimeKeeping = [
     }
 ];
 
+const listWeek = Utils.renderItemWeekPicker();
+
 export default class ListTimeKeeping extends Component {
     constructor(props) {
         super(props);
@@ -64,8 +69,8 @@ export default class ListTimeKeeping extends Component {
                     <Text>{item.amount}</Text>
                 </View>
                 <View style={itemRight}>
+                        <Image source={ImageCommon.ViewIcon} />
                     <Button transparent info onPress={() => navigation.navigate("TimeKeeping")}>
-                        <Image source={viewIcon} />
                     </Button>
                 </View>
             </ListItem>
@@ -80,25 +85,16 @@ export default class ListTimeKeeping extends Component {
         var { navigation } = this.props;
         return (
             <Container style={{ backgroundColor: '#EEE9E9' }}>
-                <MainHeader navigation={navigation} title="Danh sách chấm công" showMenu={true} />
+                <MainHeader navigation={navigation} title="Danh sách chấm công" showMenu={true} iconLeft={ImageCommon.TimeKeepingIcon} />
                 <Content style={bodyContent}>
                     <View style={searchInfo}>
                         <View style={searchLable}>
                             <Text>Tuần : </Text>
                         </View>
                         <View style={searchText}>
-                            <Picker
-                                mode="dropdown"
-                                headerBackButtonText="Chọn tuần"
-                                selectedValue={this.state.weekValue}
-                                onValueChange={(itemValue, itemIndex) => this.setState({ weekValue: itemValue })}
-                            >
-                                <Item label="Tuần 1" value="1" />
-                                <Item label="Tuần 2" value="2" />
-                                <Item label="Tuần 3" value="3" />
-                                <Item label="Tuần 4" value="4" />
-                                <Item label="Tuần 5" value="5" />
-                            </Picker>
+                            <PickerCommon data={listWeek} selectedValue={this.state.weekValue}
+                                headerText = "Chọn tuần"
+                                onValueChange={(itemValue, itemIndex) => this.setState({ weekValue: itemValue })}/>
                         </View>
                     </View>
                     <View style={searchInfo}>
@@ -129,18 +125,7 @@ export default class ListTimeKeeping extends Component {
                         </ListItem>
                     </View>
                 </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button vertical active>
-                            <Icon name="apps" active />
-                            <Text>Tuần</Text>
-                        </Button>
-                        <Button vertical>
-                            <Icon name="camera" />
-                            <Text>Tháng</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
+                <MainFooter/>
             </Container>
         )
     }
